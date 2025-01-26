@@ -13,11 +13,16 @@ main(int argc, char *argv[])
         exit(1);
     } else if (rc == 0) {
         // child (new process)
-        printf("hello, I am child (pid:%d)\n", (int) getpid());
+        printf("hello, I am child (pid:%d) of (ppid:%d)\n", (int) getpid(), (int) getppid());
+        sleep(2);
+        printf("hello, I am child (pid:%d) of (ppid:%d)\n", (int) getpid(), (int) getppid());
+
     } else {
         // parent goes down this path (original process)
+        sleep(1);
         printf("hello, I am parent of %d (pid:%d)\n",
 	       rc, (int) getpid());
     }
     return 0;
 }
+
